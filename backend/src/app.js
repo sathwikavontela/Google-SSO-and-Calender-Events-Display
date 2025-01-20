@@ -13,7 +13,6 @@ app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(express.json());
 app.use(session({ secret: "secret", resave: false, saveUninitialized: true }));
 
-// Passport configuration
 passport.use(
   new GoogleStrategy(
     {
@@ -36,6 +35,7 @@ app.use(passport.session());
 // Routes
 app.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email", "https://www.googleapis.com/auth/calendar.events.readonly"] }));
 
+
 app.get(
   "/auth/google/callback",
   passport.authenticate("google", { failureRedirect: "/" }),
@@ -49,8 +49,6 @@ app.get("/events", async (req, res) => {
   if (!accessToken) {
     return res.status(401).send({ error: "Unauthorized: Access token is missing" });
   }
-
- 
   try {
     const response = await axios.get(
       "https://www.googleapis.com/calendar/v3/calendars/primary/events",
@@ -64,7 +62,6 @@ app.get("/events", async (req, res) => {
 });
 
 
-// Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 

@@ -42,6 +42,14 @@ function App() {
     setFilteredEvents(filtered);
   };
 
+  const handleLogout = () => {
+    setToken(null); // Clear the token from state
+    window.history.replaceState({}, document.title, "/"); // Remove token from URL
+    setEvents([]);
+    setFilteredEvents([]);
+    setSelectedDate(null);
+  };
+
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       <h1 className="text-2xl font-bold mb-4">Google Calendar Events</h1>
@@ -54,30 +62,48 @@ function App() {
         </a>
       ) : (
         <>
-          <div className="mb-4">
+          <div className="flex justify-between items-center mb-4">
             <DatePicker
               selected={selectedDate}
               onChange={(date) => filterEventsByDate(date)}
               className="border p-2 rounded"
               placeholderText="Filter by date"
             />
+            <button
+              onClick={handleLogout}
+              className="bg-red-500 text-white px-4 py-2 rounded ml-4"
+            >
+              Logout
+            </button>
           </div>
           <table className="w-full border-collapse border border-gray-400">
             <thead>
               <tr>
                 <th className="border px-4 py-2">Event</th>
-                <th className="border px-4 py-2">Start</th>
-                <th className="border px-4 py-2">End</th>
+                <th className="border px-4 py-2">Date</th>
+                <th className="border px-4 py-2">Time</th>
+                <th className="border px-4 py-2">Location</th>
               </tr>
             </thead>
             <tbody>
-              {filteredEvents.map((event) => (
-                <tr key={event.id}>
-                  <td className="border px-4 py-2">{event.summary}</td>
-                  <td className="border px-4 py-2">{event.start.dateTime || event.start.date}</td>
-                  <td className="border px-4 py-2">{event.end.dateTime || event.end.date}</td>
-                </tr>
-              ))}
+              {filteredEvents.map((event) => {
+                const startDateTime = new Date(event.start.dateTime || event.start.date);
+                const endDateTime = new Date(event.end.dateTime || event.end.date);
+
+                const date = startDateTime.toLocaleDateString(); // Format the date
+                const startTime = startDateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // Format start time
+                const endTime = endDateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // Format end time
+                const time = `${startTime} - ${endTime}`; // Combine start and end time
+
+                return (
+                  <tr key={event.id}>
+                    <td className="border px-4 py-2">{event.summary}</td>
+                    <td className="border px-4 py-2">{date}</td>
+                    <td className="border px-4 py-2">{time}</td>
+                    <td className="border px-4 py-2">{event.location || "No location provided"}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </>
