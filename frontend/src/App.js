@@ -1,114 +1,89 @@
-import React, { useEffect, useState } from "react";
-import { format } from "date-fns";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-const App = () => {
+function App() {
   const [token, setToken] = useState(null);
   const [events, setEvents] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [filteredEvents, setFilteredEvents] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(null);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      setToken(storedToken);
-    } else {
-      const queryParams = new URLSearchParams(window.location.search);
-      const tokenFromUrl = queryParams.get("token");
-      if (tokenFromUrl) {
-        localStorage.setItem("token", tokenFromUrl);
-        setToken(tokenFromUrl);
-       
-        const urlWithoutToken = window.location.href.split('?')[0]; 
-        window.history.replaceState({}, '', urlWithoutToken); 
-      }
+    const query = new URLSearchParams(window.location.search);
+    const authToken = query.get("token");
+    if (authToken) {
+      setToken(authToken);
+      fetchEvents(authToken);
     }
   }, []);
-  
 
-  useEffect(() => {
-    if (token) {
-      fetchEvents(token);
-    }
-  }, [token]);
-
-  const fetchEvents = async (token) => {
-    setLoading(true);
+  const fetchEvents = async (accessToken) => {
     try {
-      const response = await fetch(`http://localhost:5000/events?token=${token}`);  
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
-
-      console.log(data);
-      setEvents(data);
-    } catch (error) {
-      console.log("Error fetching events", error);
-    } finally {
-      setLoading(false);
+      const res = await axios.get(`http://localhost:5000/events?accessToken=${accessToken}`);
+      const events = res.data.items || [];
+      setEvents(events);
+      setFilteredEvents(events);
+    } catch (err) {
+      console.error(err);
     }
-
   };
 
-
-  const handleLogin = () => {
-    window.location.href = "http://localhost:5000/auth/google";
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setToken(null);
+  const filterEventsByDate = (date) => {
+    setSelectedDate(date);
+    if (!date) {
+      setFilteredEvents(events);
+      return;
+    }
+    const filtered = events.filter((event) => {
+      const eventDate = new Date(event.start.dateTime || event.start.date);
+      return eventDate.toDateString() === date.toDateString();
+    });
+    setFilteredEvents(filtered);
   };
 
   return (
-    <div>
+    <div className="p-6 bg-gray-100 min-h-screen">
+      <h1 className="text-2xl font-bold mb-4">Google Calendar Events</h1>
       {!token ? (
-        <div>
-         
-          <button onClick={handleLogin}>Login with Google</button>
-        </div>
+        <a
+          href="http://localhost:5000/auth/google"
+          className="bg-blue-500 text-white px-4 py-2 rounded"
+        >
+          Login with Google
+        </a>
       ) : (
-        <div>
-          <button onClick={handleLogout}>Logout</button>
-          {loading ? (
-            <p>Loading events...</p>
-          ) : (
-            <table>
-              <thead>
-                <tr>
-                  <th>Event Name</th>
-                  <th>Date</th>
-                  <th>Time</th>
-                  <th>Location</th>
+        <>
+          <div className="mb-4">
+            <DatePicker
+              selected={selectedDate}
+              onChange={(date) => filterEventsByDate(date)}
+              className="border p-2 rounded"
+              placeholderText="Filter by date"
+            />
+          </div>
+          <table className="w-full border-collapse border border-gray-400">
+            <thead>
+              <tr>
+                <th className="border px-4 py-2">Event</th>
+                <th className="border px-4 py-2">Start</th>
+                <th className="border px-4 py-2">End</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredEvents.map((event) => (
+                <tr key={event.id}>
+                  <td className="border px-4 py-2">{event.summary}</td>
+                  <td className="border px-4 py-2">{event.start.dateTime || event.start.date}</td>
+                  <td className="border px-4 py-2">{event.end.dateTime || event.end.date}</td>
                 </tr>
-              </thead>
-              <tbody>
-                {events.length === 0 ? (
-                  <tr><td colSpan="4">No events found</td></tr>
-                ) : (
-                  events.map((event, index) => {
-                    const startDate = new Date(event.start);
-                    const endDate = new Date(event.end);
-                    const formattedStartDate = format(startDate, "dd-MM-yyyy");
-                    const formattedStartTime = format(startDate, "HH:mm");
-                    const formattedEndTime = format(endDate, "HH:mm");
-
-                    return (
-                      <tr key={index}>
-                        <td>{event.summary}</td>
-                        <td>{formattedStartDate}</td>
-                        <td>{formattedStartTime} - {formattedEndTime}</td>
-                        <td>{event.location}</td>
-                      </tr>
-                    );
-                  })
-                )}
-              </tbody>
-            </table>
-          )}
-        </div>
+              ))}
+            </tbody>
+          </table>
+        </>
       )}
     </div>
   );
-};
+}
 
 export default App;
