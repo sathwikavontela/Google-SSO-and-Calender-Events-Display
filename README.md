@@ -154,6 +154,11 @@ This project is a simple web application that demonstrates my backend, frontend,
 
 ***Event Pagination***: To enhance the user experience when dealing with numerous calendar events, pagination is implemented. This allows users to easily navigate through large sets of events, loading them in chunks for improved performance and usability.
 
+
+## Testing the Application  
+- Test User Email: apptestingassignment@gmail.com    
+- Password: Whitecarrot@2025  
+To test the application, please log in using the provided email and password. Once logged in, you'll be able to interact with the calendar and its features.
   
 
 
