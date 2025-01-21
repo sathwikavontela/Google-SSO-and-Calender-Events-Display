@@ -57,54 +57,102 @@ This project is a simple web application that demonstrates my backend, frontend,
 - Node.js (v20 or later)
 
 ## Setup
-1. **Clone the Repository** 
-   ```git clone https://github.com/sathwikavontela/Assignment-Whitecarrot-Intern-2025.git```  
+1. **Clone the Repository**     
+ ```bash
+    git clone https://github.com/sathwikavontela/Assignment-Whitecarrot-Intern-2025.git
+ ```
 2. **Install Dependencies**
    Navigate to both the frontend and backend directories to install dependencies:
    
-   # For the frontend
-   ```cd frontend```  
-   ```npm install```
+   #For the frontend
+   
+   ```bash
+   cd frontend
+   ```
+   
+   ```bash
+   npm install
+   ```
 
-   # For the backend
-   ```cd backend```  
-   ```npm install```
+   #For the backend
+   ```bash
+   cd backend
+   ```
+   
+   ```bash
+   npm install
+   ```
 
 3. **Configure Environment Variables**:
   Create a .env file in the backend directory with the following contents:
+
     ```GOOGLE_CLIENT_ID =  YOUR_GOOGLE_CLIENT_ID```  
     ```GOOGLE_CLIENT_SECRET = YOUR_GOOGLE_CLIENT_SECRET```  
     ```PORT=5000```
    (i have used it and if you also use the same you need not to change api call's )
 
-5. **Run the Backend (Node.js + Express)**:
+4. **Run the Backend (Node.js + Express)**:
    Navigate to the backend directory and run:
-      ```cd backend```   
-      ```npm run dev```  
+   
+      ```bash
+      cd backend
+      ```
+   
+      ```bash
+      npm run dev
+      ```  
 
-6. **Run the Frontend (React)**:
+5. **Run the Frontend (React)**:
   Navigate to the frontend directory and run:
-      ```cd frontend```  
-      ```npm start```  
 
-7. **Access the Application**:
-  Open your browser and navigate to http://localhost:3000 to view the application.
+      ```bash
+      cd frontend
+      ```
+   
+      ```bash
+      npm start
+      ```  
 
-8. **API Endpoints**:  
-  GET /auth/google  
-    Description: Initiates the Google OAuth2 authentication process to allow users to log in using their Google account.
-    The user will be prompted to grant permission for access to their Google profile and calendar events.
+6. **Access the Application**:
+  Once both the frontend and backend servers are running, open your browser and navigate to:  
+   ```bash
+   http://localhost:3000
+   ```
+
+7. **API Endpoints**:  
+   Here are the key API endpoints for the application:   
     
-  GET /auth/google/callback   
-    Description: Handles the callback after the user authenticates with Google. On successful authentication, it retrieves
-    the access token and redirects to the front-end with the token included in the URL.
+   - GET /auth/google
+        
+       Description: Initiates the Google OAuth2 authentication process to allow users to log in using their Google account.
+       The user will be prompted to grant permission for access to their Google profile and calendar events.
+     
+    
+   - GET /auth/google/callback
+            
+       Description: Handles the callback after the user authenticates with Google. On successful authentication, it retrieves
+       the access token and redirects to the front-end with the token included in the URL.
+   
 
-  GET /events   
-    Description: Retrieves Google Calendar events for the authenticated user using the access token passed as a query parameter.
-    Request Parameter:
-        accessToken (query parameter): The OAuth access token obtained after Google authentication.
-    Response: The list of Google Calendar events for the user, or an error message if the token is missing or invalid.
+   - GET /events
+     
+       Description: Retrieves Google Calendar events for the authenticated user using the access token passed as a query parameter.
+       Request Parameter:
+           accessToken (query parameter): The OAuth access token obtained after Google authentication.
+       Response: The list of Google Calendar events for the user, or an error message if the token is missing or invalid.
 
+
+## Additional Features    
+***Logout Functionality***: Users can easily log out of the application with a single click. Upon logging out, the user’s session is securely terminated, and they are redirected to the login page.
+
+
+***Highlight Today's Events***: As soon as users open the app, they are greeted with a section displaying the events for today. These events are prominently featured at the top as interactive cards, allowing users to quickly view and manage the events scheduled for the day.
+
+
+***Responsive Design***: The application is fully responsive, ensuring a seamless user experience across various devices, from desktops to mobile phones. The design adjusts dynamically to different screen sizes, offering a smooth, intuitive interface regardless of the device used.
+
+
+***Event Pagination***: To enhance the user experience when dealing with numerous calendar events, pagination is implemented. This allows users to easily navigate through large sets of events, loading them in chunks for improved performance and usability.
 
   
 
