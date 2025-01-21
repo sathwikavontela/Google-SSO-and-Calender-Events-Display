@@ -58,48 +58,48 @@ This project is a simple web application that demonstrates my backend, frontend,
 
 ## Setup
 1. **Clone the Repository** 
-   ```git clone https://github.com/sathwikavontela/Assignment-Whitecarrot-Intern-2025.git```
+   ```git clone https://github.com/sathwikavontela/Assignment-Whitecarrot-Intern-2025.git```  
 2. **Install Dependencies**
    Navigate to both the frontend and backend directories to install dependencies:
    
    # For the frontend
-   ```cd frontend```
+   ```cd frontend```  
    ```npm install```
 
    # For the backend
-   ```cd backend```
+   ```cd backend```  
    ```npm install```
 
 3. **Configure Environment Variables**:
   Create a .env file in the backend directory with the following contents:
-    ```GOOGLE_CLIENT_ID =  YOUR_GOOGLE_CLIENT_ID```
-    ```GOOGLE_CLIENT_SECRET = YOUR_GOOGLE_CLIENT_SECRET```
+    ```GOOGLE_CLIENT_ID =  YOUR_GOOGLE_CLIENT_ID```  
+    ```GOOGLE_CLIENT_SECRET = YOUR_GOOGLE_CLIENT_SECRET```  
     ```PORT=5000```
    (i have used it and if you also use the same you need not to change api call's )
 
 5. **Run the Backend (Node.js + Express)**:
    Navigate to the backend directory and run:
-      ```cd backend```
-      ```npm run dev```
+      ```cd backend```   
+      ```npm run dev```  
 
 6. **Run the Frontend (React)**:
   Navigate to the frontend directory and run:
-      ```cd frontend```
-      ```npm start```
+      ```cd frontend```  
+      ```npm start```  
 
 7. **Access the Application**:
   Open your browser and navigate to http://localhost:3000 to view the application.
 
-8. **API Endpoints**:
-  GET /auth/google
+8. **API Endpoints**:  
+  GET /auth/google  
     Description: Initiates the Google OAuth2 authentication process to allow users to log in using their Google account.
     The user will be prompted to grant permission for access to their Google profile and calendar events.
     
-  GET /auth/google/callback
+  GET /auth/google/callback   
     Description: Handles the callback after the user authenticates with Google. On successful authentication, it retrieves
     the access token and redirects to the front-end with the token included in the URL.
 
-  GET /events
+  GET /events   
     Description: Retrieves Google Calendar events for the authenticated user using the access token passed as a query parameter.
     Request Parameter:
         accessToken (query parameter): The OAuth access token obtained after Google authentication.
