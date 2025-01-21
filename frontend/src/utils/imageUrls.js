@@ -1,0 +1,2 @@
+export const ImageURL = "https://img.freepik.com/free-vector/appointment-booking-with-calendar_23-2148547989.jpg"
+export const calenderImage = "https://img.freepik.com/free-vector/appointment-booking-with-calendar-illustrated_52683-39126.jpg"

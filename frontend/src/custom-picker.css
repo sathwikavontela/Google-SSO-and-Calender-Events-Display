@@ -1,0 +1,24 @@
+.react-datepicker__day {
+    color: black; 
+    border-radius: 50%; 
+  }
+  
+  .react-datepicker__day:hover {
+    background-color: #129ae9; 
+    border-radius: 50%; 
+  }
+  
+  .react-datepicker__day--selected {
+    background-color: #5062d7;
+    color: black;
+    border-radius: 50%;
+  }
+  
+  .react-datepicker__day--today {
+    background-color: #3b82f6; 
+    color: white; 
+    font-weight: bold;
+    border-radius: 50%; 
+  }
+  
+  
