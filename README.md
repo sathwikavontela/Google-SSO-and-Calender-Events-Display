@@ -58,7 +58,7 @@ This project is a simple web application that demonstrates my backend, frontend,
 
 ## Setup
 1. **Clone the Repository**
-   git clone https://github.com/sathwikavontela/Assignment-Whitecarrot-Intern-2025.git
+   <a href="git clone https://github.com/sathwikavontela/Assignment-Whitecarrot-Intern-2025.git"><a/>
 2. **Install Dependencies**
    Navigate to both the frontend and backend directories to install dependencies:
    
