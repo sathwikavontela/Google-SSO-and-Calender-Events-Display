@@ -1,6 +1,6 @@
 # Whitecarrot Intern Project - Google SSO Login and Calendar Event Display
 
-## Overview
+##Overview
 This project is a simple web application that demonstrates my backend, frontend, and API integration skills. It allows users to log in via Google Single Sign-On (SSO), fetch their Google Calendar events, and display them in a table with filtering functionality based on event dates.
 
 
@@ -57,39 +57,40 @@ This project is a simple web application that demonstrates my backend, frontend,
 - Node.js (v20 or later)
 
 ## Setup
-1. **Clone the Repository**
-   git clone https://github.com/sathwikavontela/Assignment-Whitecarrot-Intern-2025.git
+1. **Clone the Repository** 
+   ```git clone https://github.com/sathwikavontela/Assignment-Whitecarrot-Intern-2025.git```
 2. **Install Dependencies**
    Navigate to both the frontend and backend directories to install dependencies:
    
    # For the frontend
-   cd frontend
-   npm install
+   ```cd frontend```
+   ```npm install```
 
    # For the backend
-   cd backend
-   npm install
+   ```cd backend```
+   ```npm install```
 
 3. **Configure Environment Variables**:
   Create a .env file in the backend directory with the following contents:
-    GOOGLE_CLIENT_ID =  YOUR_GOOGLE_CLIENT_ID
-    GOOGLE_CLIENT_SECRET = YOUR_GOOGLE_CLIENT_SECRET
-    PORT=5000(i have used it and if you also use the same you need not to change api call's 
+    ```GOOGLE_CLIENT_ID =  YOUR_GOOGLE_CLIENT_ID```
+    ```GOOGLE_CLIENT_SECRET = YOUR_GOOGLE_CLIENT_SECRET```
+    ```PORT=5000```
+   (i have used it and if you also use the same you need not to change api call's )
 
-4. **Run the Backend (Node.js + Express)**:
+5. **Run the Backend (Node.js + Express)**:
    Navigate to the backend directory and run:
-      cd backend
-      npm run dev
+      ```cd backend```
+      ```npm run dev```
 
-5. **Run the Frontend (React)**:
+6. **Run the Frontend (React)**:
   Navigate to the frontend directory and run:
-      cd frontend
-      npm start
+      ```cd frontend```
+      ```npm start```
 
-6. **Access the Application**:
+7. **Access the Application**:
   Open your browser and navigate to http://localhost:3000 to view the application.
 
-7. **API Endpoints**:
+8. **API Endpoints**:
   GET /auth/google
     Description: Initiates the Google OAuth2 authentication process to allow users to log in using their Google account.
     The user will be prompted to grant permission for access to their Google profile and calendar events.
