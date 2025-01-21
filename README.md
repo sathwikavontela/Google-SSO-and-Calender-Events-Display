@@ -1,9 +1,10 @@
+# Whitecarrot Intern Project - Google SSO Login and Calendar Event Display
 
-#Overview
+## Overview
 This project is a simple web application that demonstrates my backend, frontend, and API integration skills. It allows users to log in via Google Single Sign-On (SSO), fetch their Google Calendar events, and display them in a table with filtering functionality based on event dates.
 
 
-##Features
+## Features
 **Google SSO Login**
    - Implemented Single Sign-On (SSO) using Google OAuth 2.0 for user authentication.
    - Users can log in securely via their Google account. Once authenticated, the user's Google Calendar events can be accessed.
@@ -52,10 +53,10 @@ This project is a simple web application that demonstrates my backend, frontend,
 
 ## Installation
 
-### Prerequisites
+## Prerequisites
 - Node.js (v20 or later)
 
-### Setup
+## Setup
 1. **Clone the Repository**
    git clone https://github.com/sathwikavontela/Assignment-Whitecarrot-Intern-2025.git
 2. **Install Dependencies**
