@@ -30,7 +30,7 @@ function App() {
 
   const fetchEvents = async (accessToken) => {
     try {
-      const res = await axios.get(`http://localhost:5000/events?accessToken=${accessToken}`);
+      const res = await axios.get(`https://assignment-whitecarrot-intern-2025.onrender.com/events?accessToken=${accessToken}`);
       const events = res.data.items || [];
       setEvents(events);
       setFilteredEvents(events); 
@@ -68,7 +68,7 @@ function App() {
               </p>
             
               <a
-                href="http://localhost:5000/auth/google"
+                href="https://assignment-whitecarrot-intern-2025.onrender.com/auth/google"
                 className="bg-blue-500 text-white px-8 py-4 w-fit rounded-lg hover:bg-blue-600 transition text-center flex items-center justify-center mt-8 transform hover:scale-105 shadow-lg"
               >
                 <FcGoogle className="mr-3 md:text-2xl sm:text-xl" /> Login with Google
