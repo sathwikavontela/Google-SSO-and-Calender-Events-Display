@@ -13,7 +13,7 @@ dotenv.config();
 const app = express();
 
 // CORS configuration to allow requests from localhost:3000 with credentials (cookies)
-app.use(cors({ origin: "https://assignment-whitecarrot-intern-2025.vercel.app", credentials: true }));
+app.use(cors({ origin: "https://assignment-whitecarrot-intern-2025-jjqz.vercel.app", credentials: true }));
 
 
 app.use(express.json()); // Middleware for parsing JSON request bodies
@@ -62,7 +62,7 @@ app.get(
   passport.authenticate("google", { failureRedirect: "/" }), // Redirect to home on failure
   (req, res) => {
     // On success, the accessToken will be redirected to frontend
-    res.redirect("https://assignment-whitecarrot-intern-2025.vercel.app?token=" + req.user.accessToken);
+    res.redirect("https://assignment-whitecarrot-intern-2025-jjqz.vercel.app?token=" + req.user.accessToken);
   }
 );
 
