@@ -142,10 +142,7 @@ This project is a simple web application that demonstrates my backend, frontend,
        Response: The list of Google Calendar events for the user, or an error message if the token is missing or invalid.
 
 
-## Additional Features    
-***Logout Functionality***: Users can easily log out of the application with a single click. Upon logging out, the user’s session is securely terminated, and they are redirected to the login page.
-
-
+## Additional Features   
 ***Highlight Today's Events***: As soon as users open the app, they are greeted with a section displaying the events for today. These events are prominently featured at the top as interactive cards, allowing users to quickly view and manage the events scheduled for the day.
 
 
@@ -155,10 +152,33 @@ This project is a simple web application that demonstrates my backend, frontend,
 ***Event Pagination***: To enhance the user experience when dealing with numerous calendar events, pagination is implemented. This allows users to easily navigate through large sets of events, loading them in chunks for improved performance and usability.
 
 
-## Testing the Application  
-- Test User Email: apptestingassignment@gmail.com    
-- Password: Whitecarrot@2025  
-To test the application, please log in using the provided email and password. Once logged in, you'll be able to interact with the calendar and its features.
+## Deployment  
+The application has been successfully deployed, ensuring seamless interaction between the frontend and backend. Below is a concise summary of the deployment process:
+
+***Frontend Deployment***
+   - Platform: Vercel  
+   - Deployed URL:
+         
+     ```bash
+     https://assignment-whitecarrot-intern-2025.vercel.app/
+     ```  
+   - Key checks: Verified that the Google login button redirects correctly.
+     Ensured events are displayed properly with filtering and pagination functionality.
+     Confirmed responsiveness on various devices.
+     
+***Backend Deployment***
+  - Platform: Render  
+  - Deployed URL:
+     
+    ```bash
+    https://assignment-whitecarrot-intern-2025-1.onrender.com
+    ```  
+  - Key Checks    
+      - Authentication Flow: Verified that Google SSO works seamlessly, redirecting users for login and fetching calendar events upon successful authentication.
+
+      - Token Handling: Ensured secure handling of tokens during login and event fetching, with proper validation.  
+   
+      - Edge Case Handling: Tested scenarios such as invalid tokens and missing parameters directly in the live deployment environment to ensure robust          f         unctionality.
   
 
 
