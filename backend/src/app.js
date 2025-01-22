@@ -27,7 +27,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID, 
       clientSecret: process.env.GOOGLE_CLIENT_SECRET, //  Google OAuth client ID & secret from .env
-      callbackURL: 'https://assignment-whitecarrot-intern-2025.onrender.com/auth/google/callback'  // Ensure this matches the URI registered in your console // Callback route after authentication
+      callbackURL: 'https://assignment-whitecarrot-intern-2025.onrender.com/auth/google/callback' 
     },
     (accessToken, refreshToken, profile, done) => {
       // Store user profile and access token in session after successful authentication
@@ -79,7 +79,7 @@ app.get("/events", async (req, res) => {
     // Make a request to the Google Calendar API to fetch events
     const response = await axios.get(
       "https://www.googleapis.com/calendar/v3/calendars/primary/events",
-      { headers: { Authorization: `Bearer ${accessToken}` } } // Pass the access token as the Authorization header to authorize 
+       { headers: { Authorization: `Bearer ${accessToken}` } } // Pass the access token as the Authorization header to authorize 
       // the request and access the user's calendar data
 
     );
