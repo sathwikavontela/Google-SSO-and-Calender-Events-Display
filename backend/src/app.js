@@ -27,7 +27,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID, 
       clientSecret: process.env.GOOGLE_CLIENT_SECRET, //  Google OAuth client ID & secret from .env
-      callbackURL: "/auth/google/callback", // Callback route after authentication
+      callbackURL: 'https://assignment-whitecarrot-intern-2025.onrender.com/auth/google/callback'  // Ensure this matches the URI registered in your console // Callback route after authentication
     },
     (accessToken, refreshToken, profile, done) => {
       // Store user profile and access token in session after successful authentication
