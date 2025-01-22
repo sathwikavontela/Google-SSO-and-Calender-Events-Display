@@ -11,11 +11,12 @@ function App() {
   const [filteredEvents, setFilteredEvents] = useState([]); // State to store the filtered events based on date
 
   useEffect(() => {
+       // Checking if there's a token in the URL query params when the component mounts
     const query = new URLSearchParams(window.location.search);
-    const authToken = query.get("token");
+    const authToken = query.get("token");// Get the token from the URL
     if (authToken) {
-      setToken(authToken); 
-      fetchEvents(authToken); 
+      setToken(authToken); // set the token if it's found
+      fetchEvents(authToken);  // Fetch the events using the access token
       toast.success("Logged in successfully", { 
         position: "top-right",
         autoClose: 3000,
@@ -26,7 +27,7 @@ function App() {
         theme: "light",
       });
     }
-  }, []); 
+  }, []);  // Empty dependency array ensures this only runs once when the component mounts  i.e, when a component is added to the DOM for the first time
 
   const fetchEvents = async (accessToken) => {
     try {
@@ -41,16 +42,16 @@ function App() {
 
   const handleLogout = () => {
     setToken(null);
-    window.history.replaceState({}, document.title, "/");
-    setEvents([]); 
-    setFilteredEvents([]); 
+    window.history.replaceState({}, document.title, "/");// Remove token from URL
+    setEvents([]); // Clear the events
+    setFilteredEvents([]); // Clear the filtered events
   };
 
   return (
     <div className="min-h-screen">
       <ToastContainer /> 
 
-      {!token ? (
+      {!token ? (  // If the user is not logged in, show the login screen
         <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-100 to-blue-200 py-4 sm:px-4 sm:-mx-4">
           <div className="flex flex-col sm:flex-row bg-white shadow-xl rounded-xl w-full max-w-5xl overflow-hidden transform transition duration-500 hover:scale-95">
             <div className="w-full sm:w-1/2 flex items-center justify-center">
@@ -83,20 +84,20 @@ function App() {
           </div>
         </div>
       ) : (
-        <EventList
-          filteredEvents={filteredEvents}
-          filterEventsByDate={(date) => {
+        <EventList  // If the user is logged in, show the event list
+          filteredEvents={filteredEvents}// Passing filtered events to the EventList component
+          filterEventsByDate={(date) => {   // Function to filter events by date
             if (!date) {
-              setFilteredEvents(events);
+              setFilteredEvents(events);// If no date is selected, show all events
             } else {
               const filtered = events.filter((event) => {
                 const eventDate = new Date(event.start.dateTime || event.start.date);
-                return eventDate.toDateString() === date.toDateString();
+                return eventDate.toDateString() === date.toDateString();// Filter events by the selected date
               });
-              setFilteredEvents(filtered);
+              setFilteredEvents(filtered); // Update the filtered events state
             }
           }}
-          handleLogout={handleLogout}
+          handleLogout={handleLogout}// Passing logout function to EventList component
         />
       )}
     </div>
