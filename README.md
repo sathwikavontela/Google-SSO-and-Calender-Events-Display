@@ -162,9 +162,13 @@ The application has been successfully deployed, ensuring seamless interaction be
      ```bash
      https://assignment-whitecarrot-intern-2025.vercel.app/
      ```  
-   - Key checks: Verified that the Google login button redirects correctly.
-     Ensured events are displayed properly with filtering and pagination functionality.
-     Confirmed responsiveness on various devices.
+   - Key Checks:
+      
+       - Verified that the Google login button redirects correctly.
+     
+       - Ensured events are displayed properly with filtering and pagination functionality.
+     
+       - Confirmed responsiveness on various devices.
      
 ***Backend Deployment***
   - Platform: Render  
