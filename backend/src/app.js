@@ -12,6 +12,8 @@ dotenv.config();
 
 const app = express();
 
+app.set("trust proxy", true);
+
 // CORS configuration to allow requests from localhost:3000 with credentials (cookies)
 app.use(cors({ origin: "https://assignment-whitecarrot-intern-2025-jjqz.vercel.app", credentials: true }));
 
