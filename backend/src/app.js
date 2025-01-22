@@ -28,7 +28,8 @@ passport.use(
   new GoogleStrategy(
     {
       clientID: process.env.GOOGLE_CLIENT_ID, 
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET, //  Google OAuth client ID & secret from .env
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      grant_type: "authorization_code",//  Google OAuth client ID & secret from .env
       callbackURL: '/auth/google/callback' 
     },
     (accessToken, refreshToken, profile, done) => {
